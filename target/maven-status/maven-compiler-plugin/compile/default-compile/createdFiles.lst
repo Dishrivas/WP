@@ -1,0 +1,6 @@
+TestFrameworkWP\PageObject\KiwisaverRetirementCalculatorPage.class
+TestFrameworkWP\testbase\TestBase.class
+TestFrameworkWP\PageObject\KiwisaverCalculatorsPage.class
+TestFrameworkWP\PageObject\HomePage.class
+TestFrameworkWP\testbase\Config.class
+TestFrameworkWP\helper\Wait\WaitHelper.class
