@@ -9,7 +9,9 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import TestFrameworkWP.helper.Logger.LoggerHelper;
 import TestFrameworkWP.helper.Wait.WaitHelper;
+import TestFrameworkWP.PageObject.HomePage;
 import TestFrameworkWP.testbase.Config;
 import TestFrameworkWP.testbase.TestBase;
 
@@ -19,6 +21,8 @@ public class KiwisaverRetirementCalculatorPage {
 	WaitHelper waitHelper;
 	
 	String KiwiSaver = "";
+
+	private final Logger log = LoggerHelper.getLogger(KiwisaverRetirementCalculatorPage.class);
 	
 	
 	@FindBy(css ="button.icon-target.icon-target-help-toggle.icon-btn.icon-btn-info.ir.ng-scope")
@@ -104,72 +108,79 @@ public class KiwisaverRetirementCalculatorPage {
 		return this.driver.getTitle();
 	}
 	
+
+public  void FillHighRiskCalculationDetails (WebDriver driver) throws InterruptedException{
+
+	log.info("Filling High risk details.");
 	
-public static void GetKiwiSaverHighRiskBalance (WebDriver driver, int Age, int Salary,int kiwiSaverBalance, int volContributions, int savingGoals ) throws InterruptedException{
-		
-		
-		driver.get("https://www.westpac.co.nz");
-		HomePage homePage = new HomePage(driver);
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		
-		homePage.mouseOver("KiwiSaver");
-		KiwisaverCalculatorsPage newPage = homePage.clickOnMenu(homePage.kiwiSaverCalculators);
-		
-		driver.manage().window().maximize();
-		js.executeScript("arguments[0].scrollIntoView();", newPage.kiwiSaverRetirementCalculator);
-		KiwisaverRetirementCalculatorPage kiwisaverRetirementCalculatorPage = newPage.clickOnIntem(newPage.kiwiSaverRetirementCalculator);
-		
-		Integer size = driver.findElements(By.tagName("iframe")).size();
-		driver.switchTo().frame(0);		
-		
-		kiwisaverRetirementCalculatorPage.currentAge.click();
-		kiwisaverRetirementCalculatorPage.currentAge.sendKeys("30");
-		
-		//kiwisaverRetirementCalculatorPage.employmentStatus.click();
-		kiwisaverRetirementCalculatorPage.employmentStatusArrow.click();
-		kiwisaverRetirementCalculatorPage.mouseOver("Employed");
-		//kiwisaverRetirementCalculatorPage.employmentStatusEmployed.click();
-		
-		kiwisaverRetirementCalculatorPage.currentKiwiSaverBalance.sendKeys("Salary");
-		kiwisaverRetirementCalculatorPage.memberContribution.click();
-		kiwisaverRetirementCalculatorPage.riskProfileHigh.click();
-		kiwisaverRetirementCalculatorPage.viewKiwiSaverProjections.click();
-		
-		Thread.sleep(9000);
+	this.currentAge.click();
+	this.currentAge.sendKeys("30");
+	
+	this.employmentStatusArrow.click();
+	this.mouseOver("Employed");
+	
+	this.salaryPerYear.sendKeys("82000");
+	
+	this.riskProfileHigh.click();
+	log.info(" completed all details for High risk  KiwiSaverProjections ");
+	Thread.sleep(6000);
+
 	}
 
-public static void GetKiwiSaverMediumRiskBalance (WebDriver driver, String Age, String Salary,String kiwiSaverBalance, String volContributions, String savingGoals ) throws InterruptedException{
+public  void FillMediumRiskBalanceDetails (WebDriver driver ) throws InterruptedException{
 	
-	driver.get("https://www.westpac.co.nz");
-	HomePage homePage = new HomePage(driver);
-	JavascriptExecutor js = (JavascriptExecutor) driver;
+	log.info("Filling Medium risk details.");
 	
-	homePage.mouseOver("KiwiSaver");
-	KiwisaverCalculatorsPage newPage = homePage.clickOnMenu(homePage.kiwiSaverCalculators);
+	currentAge.click();
+	currentAge.sendKeys("45");
 	
-	driver.manage().window().maximize();
-	js.executeScript("arguments[0].scrollIntoView();", newPage.kiwiSaverRetirementCalculator);
-	KiwisaverRetirementCalculatorPage kiwisaverRetirementCalculatorPage = newPage.clickOnIntem(newPage.kiwiSaverRetirementCalculator);
-	
-	Integer size = driver.findElements(By.tagName("iframe")).size();
-	driver.switchTo().frame(0);		
-	
-	kiwisaverRetirementCalculatorPage.currentAge.click();
-	kiwisaverRetirementCalculatorPage.currentAge.sendKeys(Age);
-	
-	kiwisaverRetirementCalculatorPage.employmentStatusArrow.click();
-	kiwisaverRetirementCalculatorPage.mouseOver("Self-employed");
+	employmentStatusArrow.click();
+	mouseOver("Self-employed");
 	//kiwisaverRetirementCalculatorPage.employmentStatusSelfEmployed.click();
+		
+	currentKiwiSaverBalance.sendKeys("100000");
+	voluntaryContri.sendKeys("90");
+	voluntaryContriFreqArrow.click();		
 	
+	voluntaryContriFreqFortnight.click();
 	
-	kiwisaverRetirementCalculatorPage.salaryPerYear.sendKeys("Salary");
-	kiwisaverRetirementCalculatorPage.memberContribution.click();
-	kiwisaverRetirementCalculatorPage.riskProfileHigh.click();
-	kiwisaverRetirementCalculatorPage.viewKiwiSaverProjections.click();
+	riskProfileMedium.click();
+	log.info(" Input Savings goal 290000 ");
+
+	savingsGoal.sendKeys("290000");
 	
-	Thread.sleep(9000);
+	log.info(" completed all details for High risk  KiwiSaverProjections ");
+
+	Thread.sleep(6000);
 }
+
+public  void FillMediumRiskBalanceDetailsAged55 (WebDriver driver ) throws InterruptedException{
 	
+	log.info("Filling Medium risk details.");
+	
+	currentAge.click();
+	currentAge.sendKeys("55");
+	
+	employmentStatusArrow.click();
+	mouseOver("Not employed");
+	//kiwisaverRetirementCalculatorPage.employmentStatusSelfEmployed.click();
+		
+	currentKiwiSaverBalance.sendKeys("140000");
+	voluntaryContri.sendKeys("10");
+	voluntaryContriFreqArrow.click();		
+	
+	voluntaryContriFreqAnnual.click();
+	
+	riskProfileMedium.click();
+	
+	log.info(" Input Savings goal 200000 ");
+	savingsGoal.sendKeys("200000");
+	
+	log.info(" completed all details for High risk  KiwiSaverProjections ");
+
+	Thread.sleep(6000);
+}
+
 	public void clickOnInformationIconForCurrentAge(WebElement element){
 	
 		informationIconForCurrentAge.click();
