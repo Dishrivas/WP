@@ -115,22 +115,13 @@ public class HomePageTest extends TestBase{
 		Integer size = driver.findElements(By.tagName("iframe")).size();
 		driver.switchTo().frame(0);		
 		
-		kiwisaverRetirementCalculatorPage.currentAge.click();
-		kiwisaverRetirementCalculatorPage.currentAge.sendKeys("30");
+		kiwisaverRetirementCalculatorPage.FillHighRiskCalculationDetails(driver);
 		
-		kiwisaverRetirementCalculatorPage.employmentStatusArrow.click();
-		kiwisaverRetirementCalculatorPage.mouseOver("Employed");
-		
-		kiwisaverRetirementCalculatorPage.salaryPerYear.sendKeys("82000");
-		
-		kiwisaverRetirementCalculatorPage.riskProfileHigh.click();
 		log.info(" Viewing KiwiSaverProjections ");
 		kiwisaverRetirementCalculatorPage.viewKiwiSaverProjections.click();
 		
-		
-		//KiwisaverRetirementCalculatorPage.GetKiwiSaverHighRiskBalance(driver,30,82000, 0, 0, 0);
-	}
-	
+}
+
 	@Test
 	public void GetKiwiSaverMediumRiskAged45Balance() throws InterruptedException{
 		
@@ -154,31 +145,13 @@ public class HomePageTest extends TestBase{
 		 kiwisaverRetirementCalculatorPage = newPage.clickOnIntem(newPage.kiwiSaverRetirementCalculator);
 		
 		Integer size = driver.findElements(By.tagName("iframe")).size();
-		driver.switchTo().frame(0);		
-		
-		kiwisaverRetirementCalculatorPage.currentAge.click();
-		kiwisaverRetirementCalculatorPage.currentAge.sendKeys("45");
-		
-		kiwisaverRetirementCalculatorPage.employmentStatusArrow.click();
-		kiwisaverRetirementCalculatorPage.mouseOver("Self-employed");
-		
-		kiwisaverRetirementCalculatorPage.currentKiwiSaverBalance.sendKeys("100000");
-		kiwisaverRetirementCalculatorPage.voluntaryContri.sendKeys("90");
-		kiwisaverRetirementCalculatorPage.voluntaryContriFreqArrow.click();		
-		
-		kiwisaverRetirementCalculatorPage.voluntaryContriFreqFortnight.click();
-		
-		kiwisaverRetirementCalculatorPage.riskProfileMedium.click();
-		log.info(" Input Savings goal 290000 ");
-
-		kiwisaverRetirementCalculatorPage.savingsGoal.sendKeys("290000");
+		driver.switchTo().frame(0);	
+		kiwisaverRetirementCalculatorPage.FillMediumRiskBalanceDetails(driver);
 		
 		log.info(" Viewing KiwiSaverProjections ");
 
 		kiwisaverRetirementCalculatorPage.viewKiwiSaverProjections.click();
 		
-		
-		//KiwisaverRetirementCalculatorPage.GetKiwiSaverHighRiskBalance(driver,30,82000, 0, 0, 0);
 	}
 
 	@Test
@@ -206,26 +179,8 @@ public class HomePageTest extends TestBase{
 		Integer size = driver.findElements(By.tagName("iframe")).size();
 		driver.switchTo().frame(0);		
 		
-		kiwisaverRetirementCalculatorPage.currentAge.click();
-		kiwisaverRetirementCalculatorPage.currentAge.sendKeys("55");
-		
-		kiwisaverRetirementCalculatorPage.employmentStatusArrow.click();
-		kiwisaverRetirementCalculatorPage.mouseOver("Not employed");
-		
-		kiwisaverRetirementCalculatorPage.currentKiwiSaverBalance.sendKeys("140000");
-		kiwisaverRetirementCalculatorPage.voluntaryContri.sendKeys("10");
-		kiwisaverRetirementCalculatorPage.voluntaryContriFreqArrow.click();		
-		
-		kiwisaverRetirementCalculatorPage.voluntaryContriFreqAnnual.click();
-		
-		kiwisaverRetirementCalculatorPage.riskProfileMedium.click();
-		
-		log.info(" Input Savings goal 200000 ");
-		kiwisaverRetirementCalculatorPage.savingsGoal.sendKeys("200000");
+		kiwisaverRetirementCalculatorPage.FillMediumRiskBalanceDetailsAged55(driver);
 		log.info(" Viewing KiwiSaverProjections ");
 		kiwisaverRetirementCalculatorPage.viewKiwiSaverProjections.click();
-		
-		//driver.quit();
-		//KiwisaverRetirementCalculatorPage.GetKiwiSaverHighRiskBalance(driver,30,82000, 0, 0, 0);
 	}
 }
