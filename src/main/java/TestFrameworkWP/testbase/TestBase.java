@@ -104,7 +104,8 @@ public class TestBase
 	}
 	
 public void loadPropertiesFile() throws IOException{
-
+	String log4jConfPath = "log4j.properties";
+	PropertyConfigurator.configure(log4jConfPath);
 		OR = new Properties();
 		f1 = new File(System.getProperty("user.dir")+"/src/main/java/TestFramework/config/config.properties");
 		file = new FileInputStream(f1);
