@@ -8,6 +8,9 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import TestFrameworkWP.PageObject.HomePage;
+import TestFrameworkWP.helper.Logger.LoggerHelper;
+
 import TestFrameworkWP.helper.Wait.WaitHelper;
 import TestFrameworkWP.testbase.Config;
 import TestFrameworkWP.testbase.TestBase;
@@ -15,11 +18,9 @@ import TestFrameworkWP.testbase.TestBase;
 public class HomePage {
 	
 	WebDriver driver;
+	private final Logger log = LoggerHelper.getLogger(HomePage.class);
 	WaitHelper waitHelper;
-	
-
-
-	
+		
 	@FindBy(css="a#ubermenu-section-link-kiwisaver-ps")
 	public WebElement kiwiSaverMenu;
 	
@@ -27,18 +28,18 @@ public class HomePage {
 	
 	@FindBy(xpath="//*[@id='ubermenu-item-cta-kiwisaver-calculators-ps']")
 	public WebElement kiwiSaverCalculators;
-	
-	
-
-	
+		
 	public HomePage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 		waitHelper = new WaitHelper(driver);
 		TestBase testBase = new TestBase();
+		waitHelper.waitForElement(driver, kiwiSaverMenu,new Config(TestBase.OR).getExplicitWait());
+
 	}
 	
 	public void mouseOver(String data){
+		log.info("doing mouse over on :"+data);
 		Actions action = new Actions(driver);
 		action.moveToElement(driver.findElement(By.xpath("//*[contains(text(),'"+data+"')]"))).build().perform();
 	}
